@@ -11,15 +11,15 @@ notes.get('/', (req, res) => {
     readFromFile('./db.json').then((data) => res.json(JSON.parse(data)));
 });
 
-// GET Route for a specific tip
-notes.get('/:tip_id', (req, res) => {
-    const tipId = req.params.tip_id;
-    readFromFile('./db/tips.json')
-      .then((data) => JSON.parse(data))
-      .then((json) => {
-        const result = json.filter((tip) => tip.tip_id === tipId);
-        return result.length > 0
-          ? res.json(result)
-          : res.json('No tip with that ID');
-      });
-  });
+// GET Route for a specific note
+notes.get('/:note_id', (req, res) => {
+    const noteId = req.params.note_id;
+    readFromFile('./db.json')
+        .then((data) => JSON.parse(data))
+        .then((json) => {
+            const result = json.filter((note) => note.note_id === noteId);
+            return result.length > 0
+                ? res.json(result)
+                : res.json('No notes with that ID');
+        });
+});
